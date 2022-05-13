@@ -5,18 +5,9 @@ import java.util.List;
 
 public class Main {
     //1.Есть два класса: PersonsAdresses.Address  с полями улица и номер дома  и PersonsAdresses.Person с полями
-    // имя  и PersonsAdresses.Address. Нужно написать метод, который по списку persons  возвращает
+    // имя  и Persons Adresses.Address. Нужно написать метод, который по списку persons  возвращает
     // список их адресов
 
-    //2. Есть список с именами Ivan, Maria, Stephan, John, Amalia. Написать
-    // метод, возвращающий список в котором не содержатся имена исходного листа длиной 4
-
-    //3.Есть два листа одинковой длины с числами. Написать метод, который вернет лист с элементами Yes or No
-    //где значение на i-ом месте зависит от того, равны ли элемениы двух спсиков под номером i
-    // {1,2,3,4} and {5,2,3,0}->{No,Yes,Yes,No}
-
-    //4.Написать метод, реверсирующий лист целых чисел. возвращает его в обратном порядке. Можно решать любым
-    // способом, какой вам нравится.
     public static void main(String[] args) {
         Person p1 = new Person("Peter", new Address("Frunze", 120));
         Person p2 = new Person("Vasya", new Address("Landstrasse", 10));
