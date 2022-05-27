@@ -1,6 +1,8 @@
-package lists_20_05_2022;
+package maps;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NameNumberOccurrence {
     /**
@@ -10,16 +12,12 @@ public class NameNumberOccurrence {
      */
     public static int nameByNumberOccurrence(List<String> list, String name){
         if (list == null || name == null) return 0;
-        int count = 0;
-        for (String s: list) {
-            if (s.equals(name))
-                count++;
-        }
-        /*list.forEach(s -> {
-            if (s.equals(name)) {
-                count++;
-            }
-        });*/
-        return count;
+        Map<String,Integer> mapRes = new HashMap<>();
+        list.forEach(s -> {
+            if (mapRes.containsKey(s)) {
+                mapRes.replace(s, mapRes.get(s)+1);
+            }else mapRes.put(s,1);
+        });
+        return mapRes.containsKey(name) ? mapRes.get(name) : 0;
     }
 }

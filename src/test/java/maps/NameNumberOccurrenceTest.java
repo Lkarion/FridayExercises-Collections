@@ -1,4 +1,5 @@
-package lists_20_05_2022;
+package maps;
+import maps.NameNumberOccurrence;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
