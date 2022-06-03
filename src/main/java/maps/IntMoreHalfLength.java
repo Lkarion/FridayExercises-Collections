@@ -21,7 +21,7 @@ public class IntMoreHalfLength {
         }
         for (int key: mapRes.keySet()) {
             if (mapRes.get(key) > arr.length/2)
-                return (int)key;
+                return key;
         }
         return res;
     }
