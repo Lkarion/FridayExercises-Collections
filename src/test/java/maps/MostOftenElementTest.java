@@ -13,12 +13,60 @@ import static org.junit.jupiter.api.Assertions.*;
 class MostOftenElementTest {
 
     List<Integer> listGiven;
+    List<String> listStrGiven;
+    List<String> listStrExp;
 
     @BeforeEach
     void init(){
         listGiven = new ArrayList<>();
+        listStrGiven = new ArrayList<>();
+        listStrExp = new ArrayList<>();
     }
 
+    // 3.
+    @Test
+    void anagramList_EmptyName() {
+        listStrGiven.add("Ivan");
+        assertEquals(listStrExp, MostOftenElement.anagramList("", listStrGiven));
+    }
+    @Test
+    void anagramList_NullName() {
+        listStrGiven.add("Ivan");
+        assertEquals(listStrExp, MostOftenElement.anagramList(null, listStrGiven));
+    }
+    @Test
+    void anagramList_EmptyList() {
+        assertEquals(listStrExp, MostOftenElement.anagramList("Ivan", listStrGiven));
+    }
+    @Test
+    void anagramList_NullList() {
+        assertEquals(listStrExp, MostOftenElement.anagramList("Ivan", null));
+    }
+    @Test
+    void anagramList_1Anagram() {
+        listStrGiven.add("Ivan");
+        listStrExp.add("Ivan");
+        assertEquals(listStrExp, MostOftenElement.anagramList("Ivan", listStrGiven));
+    }
+    @Test
+    void anagramList_NoAnagram() {
+        listStrGiven.add("Karl");
+        listStrGiven.add("Maria");
+        assertEquals(listStrExp, MostOftenElement.anagramList("Ivan", listStrGiven));
+    }
+    @Test
+    void anagramList_AllAreAnagrams() {
+        listStrGiven.add("Karl");
+        listStrGiven.add("Klar");
+        listStrGiven.add("rakl");
+
+        listStrExp.add("Karl");
+        listStrExp.add("Klar");
+        listStrExp.add("rakl");
+        assertEquals(listStrExp, MostOftenElement.anagramList("Karl", listStrGiven));
+    }
+
+    // 1.
     @Test
     void findMaxOccuredElt_1Elem() {
         listGiven.add(1);
@@ -47,6 +95,7 @@ class MostOftenElementTest {
         assertEquals(2, MostOftenElement.findMaxOccuredElt(listGiven));
     }
 
+    // 2.
     @Test
     void findSingleNumber_1Element() {
         listGiven.add(1);

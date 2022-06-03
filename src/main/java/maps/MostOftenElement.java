@@ -1,14 +1,54 @@
 package maps;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-//написать метод, возвращающий элемент из списка, встречающийся наибольшее количество раз
-// 1,5, -10,1-> 1
-// public int findMaxOccuredElt(List<Integer> numbers)
+import java.util.*;
 
 public class MostOftenElement {
+
+
+    //3. Написать метод, который принимает список имен и их анаграмм и имя по
+    // которому он выдает список всех его анаграмм, включая само имя
+    //  public List<String>anagramList(String str, List<String>strings)
+    //{"ivan","airam","vani","vian","maria","kolya"}, ivan -> {ivan,vani,vian}
+
+    public static List<String> anagramList(String str, List<String>strings) {
+
+        if (str == null
+                || str.equals("")
+                || strings == null
+                || strings.isEmpty()) return Collections.emptyList();
+
+        Map<String, List<String>> map = new HashMap<>();
+        strings.forEach(name -> {
+            List<String> anagrams = new ArrayList<>();
+            strings.forEach(s -> {
+                if (isAnagram(s, str))
+                    anagrams.add(s);
+            });
+            map.put(name, anagrams);
+        });
+
+        for (String key : map.keySet()) {
+            if (key.equals(str)) {
+                return map.get(key);
+            }
+        }
+            return Collections.emptyList();
+    }
+
+    public static boolean isAnagram(String strToCheck, String strGiven){
+        if (strToCheck.length() != strGiven.length()) return false;
+        
+        char[] arrStrtoCheck = strToCheck.toLowerCase().toCharArray();
+        char[] arrStrGiven = strGiven.toLowerCase().toCharArray();
+        Arrays.sort(arrStrtoCheck);
+        Arrays.sort(arrStrGiven);
+
+        return Arrays.equals(arrStrGiven,arrStrtoCheck);
+    }
+
+    //написать метод, возвращающий элемент из списка, встречающийся наибольшее количество раз
+// 1,5, -10,1-> 1
+// public int findMaxOccuredElt(List<Integer> numbers)
     public static int findMaxOccuredElt(List<Integer> list) {
 
         Map<Integer,Integer> mapRes = new HashMap<>();
