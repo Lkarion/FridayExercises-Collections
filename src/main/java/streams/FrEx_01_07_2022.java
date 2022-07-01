@@ -1,5 +1,6 @@
 package streams;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -57,13 +58,64 @@ public class FrEx_01_07_2022 {
     /**
      * 4. Есть класс Customer с полем имя и класс BankAccount c полями IBAN and Customer.
      * Написать метод, возвращающий мапу, где customer это ключ, а список его счетов value
+     * public static Map<Customer,List<BankAccount>mapAccountsByCustomer(List <BankAccount>input)
+     *  Ivanov=[Account{IBAN="DE123455",owner=Ivanov, BankAccount{IBAN="DE456767_owner=Ivanov], Sidorov
      */
 
-    public static Map<Customer, List<BankAccount>> getAccounts(List<BankAccount> input) {
+    public static Map<Customer, List<BankAccount>> mapAccountsByCustomer(List<BankAccount> input) {
 
         return input.stream()
                 .collect(Collectors.groupingBy(BankAccount::getCustomer));
     }
+
+    /**
+     * 5. написать метод, возвращающий список IBANNs из класса BankAccount где после третьего символа стоят звездочки
+     *   List<String> listOfAccountsWithStars(List<BankAccount>input)
+     * @param input
+     * @return
+     */
+    public static List<String> listOfAccountsWithStars(List<BankAccount> input) {
+
+        return input.stream()
+                .map(bankAccount -> bankAccount.getIBAN())
+                .map(iban -> {
+                    String res = iban.substring(0,4);
+                    for (int i = 4; i < iban.length(); i++) {
+                        res += "*";
+                    }
+                    return res;
+                })
+                .toList();
+    }
+
+    /**
+     * 6. Метод принимает строку состоящую из слов , разделенных пробелом и букву.
+     * Возвращает количество слов, начинающихся с этой буквы
+     *  public static long numberOfWords(String input, String w)
+     * @param input
+     * @return
+     */
+    public static long numberOfWords(String input, String w) {
+
+        String[] words = input.split(" ");
+        return Arrays.stream(words)
+                .filter(word -> word.startsWith(w))
+                .count();
+    }
+
+    /**
+     * 7. Метод проверяет, является ли строка числом
+     *  *  public static boolean isNumber(String input)
+     * @param input
+     * @return
+     */
+    public static boolean isNumber(String input) {
+
+        return input.chars()
+                .allMatch(i -> Character.isDigit(i));
+    }
+
+
 
 }
 
@@ -122,15 +174,15 @@ class Customer {
 }
 
 class BankAccount {
-    long IBAN;
+    String IBAN;
     Customer customer;
 
-    public BankAccount(Long IBAN, Customer customer) {
+    public BankAccount(String IBAN, Customer customer) {
         this.IBAN = IBAN;
         this.customer = customer;
     }
 
-    public Long getIBAN() {
+    public String getIBAN() {
         return IBAN;
     }
 
