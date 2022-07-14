@@ -69,7 +69,7 @@ public class FrEx_01_07_2022 {
     }
 
     /**
-     * 5. написать метод, возвращающий список IBANNs из класса BankAccount где после третьего символа стоят звездочки
+     * 5. написать метод, возвращающий список IBANs из класса BankAccount где после третьего символа стоят звездочки
      *   List<String> listOfAccountsWithStars(List<BankAccount>input)
      * @param input
      * @return
